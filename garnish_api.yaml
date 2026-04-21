@@ -1,0 +1,218 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Garnish API
+meta:
+  id: wrk_24c813fe8cfc4807b6e4613c354f6423
+  created: 1776810137069
+  modified: 1776810738033
+  description: Shared API collection for the Garnish kitchen & staff management
+    app. Covers auth, admin, menu, inventory, tables, orders and reports.
+collection:
+  - name: Resource Template
+    meta:
+      id: fld_3cd60108d60f4c37bb8e9661f45c7a64
+      created: 1776810137072
+      modified: 1776810176155
+      sortKey: -900
+      description: "Template folder. Duplicate this for each REST resource: /users,
+        /menu-items, /orders, etc."
+    children:
+      - url: "{{ _.api }}/resources/1"
+        name: Get by id
+        meta:
+          id: req_36499510681a44caa55a9466be4bc8d1
+          created: 1776810137073
+          modified: 1776810137073
+          isPrivate: false
+          description: ""
+          sortKey: -900
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources"
+        name: List
+        meta:
+          id: req_b68b8c3121b343e5a4eaa075a62a1413
+          created: 1776810137073
+          modified: 1776810550289
+          isPrivate: false
+          description: ""
+          sortKey: -1000
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources/1"
+        name: Patch
+        meta:
+          id: req_54463460dd5b489bad7a2837b576fb95
+          created: 1776810137074
+          modified: 1776810570398
+          isPrivate: false
+          description: ""
+          sortKey: -600
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources"
+        name: Create
+        meta:
+          id: req_badf81bed2c145e180d765bf07964fe3
+          created: 1776810137074
+          modified: 1776810137074
+          isPrivate: false
+          description: ""
+          sortKey: -800
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources/1"
+        name: Update
+        meta:
+          id: req_f0ac9e3e5b3a4227a1d4e5c47011366d
+          created: 1776810137074
+          modified: 1776810137074
+          isPrivate: false
+          description: ""
+          sortKey: -700
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources/1"
+        name: Delete
+        meta:
+          id: req_af31c125e5444b4088c7efcbdaab2736
+          created: 1776810137075
+          modified: 1776810137075
+          isPrivate: false
+          description: ""
+          sortKey: -500
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.access_token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_f77c8a14f23c6185fdb6d52f345edcbb8c0389fe
+    created: 1776810137178
+    modified: 1776810137178
+environments:
+  name: Base Environment
+  meta:
+    id: env_cebe4c5c6a244bbc858bb23feb47edbb
+    created: 1776810137070
+    modified: 1776810137070
+    isPrivate: false
+  data:
+    base_url: http://localhost:8080
+    api: "{{ _.base_url }}/api/v1"
+    access_token: ""
+    refresh_token: ""
+  subEnvironments:
+    - name: Development
+      meta:
+        id: env_78750546ee574719a340175d7f611943
+        created: 1776810137070
+        modified: 1776810373852
+        isPrivate: false
+        sortKey: 2
+      data:
+        base_url: http://localhost:8080
+      color: "#168b05"
+    - name: Staging
+      meta:
+        id: env_72f267c94e754f27bdd1340d59878ed9
+        created: 1776810137071
+        modified: 1776810483103
+        isPrivate: false
+        sortKey: 3
+      data:
+        base_url: https://staging.example.com
+      color: "#f59e0b"
+    - name: Production
+      meta:
+        id: env_3151c2a5cd3b43c79b323770f94f67db
+        created: 1776810284279
+        modified: 1776810509965
+        isPrivate: false
+        sortKey: 1776810284279
+      data:
+        base_url: https://production.example.com
+      color: "#ef4444"
