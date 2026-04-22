@@ -70,7 +70,7 @@ git fetch origin
 git rebase origin/master
 ```
 
-If there are conflicts, Git will pause allowing you to fix the conflicts. Either fix them using an IDE's dedicateed rebasing interface or manually.
+If there are conflicts, Git will pause allowing you to fix the conflicts. Either fix them using an IDE's dedicated rebasing interface or manually.
 
 To abort the rebase and return to where you started:
 
@@ -90,12 +90,12 @@ git push --force-with-lease
 
 On GitHub, open a PR from your branch against `master`. Assign yourself and request review from at least one teammate. Additionally CodeRabbit will automatically write a review. Include `Closes #<issue-number>` in the description to automatically close the issue after merging.
 
-### 7. Merge
+### 6. Merge
 
 - **Squash and merge** (default) - collapses your branch's commits into one commit on `master`. Use this for almost everything.
 - **Rebase and merge** - keeps each of your commits. Use this only if the history is already clean and each commit tells its own story.
 
-### 8. Clean up locally
+### 7. Clean up locally
 
 ```bash
 git checkout master
