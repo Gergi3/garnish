@@ -1,0 +1,49 @@
+Project garnish {
+  database_type: 'PostgreSQL'
+}
+
+enum role {
+  admin
+  manager
+  chef
+  bartender
+  waiter
+}
+
+enum order_status {
+  open
+  in_progress
+  ready
+  served
+}
+
+Table users {
+  id bigint [ primary key, unique, increment ]
+  username varchar(30) [ not null ]
+  password_hash varchar(60) [ not null ]
+  first_name varchar(30)
+  last_name varchar(30) 
+  role role [ not null ]
+}
+
+Table orders {
+  id bigint [ primary key, unique, increment ]
+  opened_at timestamp [ default: `now()` ]
+  is_active boolean [ default: false ]
+}
+
+Table menu_items {
+  id bigint [ primary key, unique, increment ]
+  name varchar(150)
+  ingredients varchar(150)
+}
+
+Table orders_menu_items {
+  order_id bigint [ not null ]
+  menu_item_id bigint [ not null ]
+  quantity integer
+}
+
+Ref: orders_menu_items.order_id > orders.id [delete: cascade, update: no action ]
+Ref: orders_menu_items.menu_item_id > menu_items.id [delete: cascade, update: no action ]
+
