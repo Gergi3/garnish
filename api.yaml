@@ -4,7 +4,7 @@ name: Garnish API
 meta:
   id: wrk_24c813fe8cfc4807b6e4613c354f6423
   created: 1776810137069
-  modified: 1776810738033
+  modified: 1776871521241
   description: Shared API collection for the Garnish kitchen & staff management
     app. Covers auth, admin, menu, inventory, tables, orders and reports.
 collection:
