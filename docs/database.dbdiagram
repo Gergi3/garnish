@@ -5,7 +5,7 @@ Project garnish {
 enum role {
   admin
   manager
-  chef
+  cook
   bartender
   waiter
 }
@@ -26,24 +26,88 @@ Table users {
   role role [ not null ]
 }
 
+Table tables { 
+  id bigint [ primary key, unique, increment ]
+  name varchar(10) [ not null ] 
+  is_occupied boolean [ not null ]
+  
+  waiter_id bigint [ not null ]
+}
+ 
+Ref: tables.waiter_id > users.id [ delete: set null, update: no action ]
+
 Table orders {
   id bigint [ primary key, unique, increment ]
-  opened_at timestamp [ default: `now()` ]
-  is_active boolean [ default: false ]
+  opened_at timestamp [ not null,  default: `now()` ]
+
+  table_id bigint [ not null ]
 }
+
+Ref: orders.table_id > tables.id [ delete: cascade, update: no action ]
 
 Table menu_items {
   id bigint [ primary key, unique, increment ]
-  name varchar(150)
+  name varchar(150) [ not null ]
   ingredients varchar(150)
+  price money [ not null ]
 }
 
 Table orders_menu_items {
   order_id bigint [ not null ]
   menu_item_id bigint [ not null ]
-  quantity integer
+  quantity integer [ not null, default: 1 ]
 }
 
-Ref: orders_menu_items.order_id > orders.id [delete: cascade, update: no action ]
-Ref: orders_menu_items.menu_item_id > menu_items.id [delete: cascade, update: no action ]
+Ref: orders_menu_items.order_id > orders.id [ delete: cascade, update: no action ]
+Ref: orders_menu_items.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
 
+Table categories {
+  id bigint [ primary key, unique, increment ]
+  name varchar(50) [ not null ]
+  role role [ not null ]
+}
+
+Table menu_items_categories {
+  menu_item_id bigint [ not null ]
+  category_id bigint [ not null ]
+}
+
+Ref: menu_items_categories.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+Ref: menu_items_categories.category_id > categories.id [ delete: cascade, update: no action ]
+
+Table receipts {
+  id bigint [ primary key, unique, increment ]
+  tip money [ not null ]
+  issued_at timestamp [ not null, default: `now()` ]
+
+}
+
+Table receipts_menu_items {
+  menu_item_id bigint [ not null ]
+  receipt_id bigint [ not null ]
+  quantity integer [ not null, default: 1 ]
+  price money [ not null ]
+}
+
+Ref: receipts_menu_items.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+Ref: receipts_menu_items.receipt_id > receipts.id [ delete: cascade, update: no action ]
+
+Table menu_item_reviews {
+  id bigint [ primary key, unique, increment ]
+  rating integer [ not null, check: `rating >= 1 && rating <= 10` ]
+  text text
+
+  menu_item_id bigint [ not null ]
+}
+
+Ref: menu_item_reviews.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+
+Table user_ratings {
+  id bigint [ primary key, unique, increment ]
+  rating integer [ not null, check: `rating >= 1 && rating <= 10` ]
+  text text
+
+  user_id bigint [ not null ]
+}
+
+Ref: user_ratings.user_id > users.id [ delete: cascade, update: no action ] 
