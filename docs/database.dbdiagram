@@ -2,6 +2,14 @@ Project garnish {
   database_type: 'PostgreSQL'
 }
 
+Table settings {
+  id bigint [ pk, increment ]
+  restaurant_name varchar(100) [ not null ]
+  currency varchar(3) [ not null, default: 'BGN' ]
+  opening_time time
+  closing_time time
+}
+
 enum role {
   admin
   manager
