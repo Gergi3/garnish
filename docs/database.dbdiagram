@@ -16,18 +16,31 @@ enum role {
   cook
   bartender
   waiter
-}
+} 
 
-enum order_status {
-  open
-  in_progress
+enum order_item_status {
+  pending
+  preparing
   ready
   served
+  cancelled
+}
+
+enum chat_channel {
+  general 
+  kitchen 
+  bar
+  direct
+}
+
+enum payment_method {
+  cash
+  card
 }
 
 Table users {
-  id bigint [ primary key, unique, increment ]
-  username varchar(30) [ not null ]
+  id bigint [ pk, increment ]
+  username varchar(30) [ not null, unique ]
   password_hash varchar(60) [ not null ]
   first_name varchar(30)
   last_name varchar(30) 
@@ -35,74 +48,79 @@ Table users {
 }
 
 Table tables { 
-  id bigint [ primary key, unique, increment ]
-  name varchar(10) [ not null ] 
-  is_occupied boolean [ not null ]
-  
-  waiter_id bigint [ not null ]
+  id bigint [ pk, increment ]
+  name varchar(10) [ not null, unique ]
+  capacity integer [ not null ]
 }
- 
-Ref: tables.waiter_id > users.id [ delete: set null, update: no action ]
 
 Table orders {
-  id bigint [ primary key, unique, increment ]
+  id bigint [ pk, increment ] 
   opened_at timestamp [ not null,  default: `now()` ]
+  closed_at timestamp
 
   table_id bigint [ not null ]
-}
+  waiter_id bigint [ not null ]
+} 
 
 Ref: orders.table_id > tables.id [ delete: cascade, update: no action ]
+Ref: orders.waiter_id > users.id [ delete: restrict, update: no action ]
 
 Table menu_items {
-  id bigint [ primary key, unique, increment ]
+  id bigint [ pk, increment ]
   name varchar(150) [ not null ]
-  ingredients varchar(150)
-  price money [ not null ]
+  description varchar(150)
+  price decimal(10,2) [ not null ]
+  available boolean [ not null, default: true ]
 }
 
-Table orders_menu_items {
+Table order_items {
+  id bigint [ pk, increment ]
   order_id bigint [ not null ]
   menu_item_id bigint [ not null ]
   quantity integer [ not null, default: 1 ]
+  note varchar(200)
+  status order_item_status [ not null, default: 'pending' ]
+  ordered_price  decimal(10,2) [ not null ]
+  sent_at timestamp
+  ready_at timestamp
+  delivered_at timestamp
 }
 
-Ref: orders_menu_items.order_id > orders.id [ delete: cascade, update: no action ]
-Ref: orders_menu_items.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+Ref: order_items.order_id > orders.id [ delete: cascade, update: no action ]
+Ref: order_items.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
 
 Table categories {
-  id bigint [ primary key, unique, increment ]
+  id bigint [ pk, increment ]
   name varchar(50) [ not null ]
-  role role [ not null ]
-}
+ }
 
 Table menu_items_categories {
   menu_item_id bigint [ not null ]
   category_id bigint [ not null ]
-}
+
+  indexes {
+    (menu_item_id, category_id) [ pk ]
+  }
+} 
 
 Ref: menu_items_categories.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
 Ref: menu_items_categories.category_id > categories.id [ delete: cascade, update: no action ]
-
+ 
 Table receipts {
-  id bigint [ primary key, unique, increment ]
-  tip money [ not null ]
+  id bigint [ pk, increment ]
+  order_id bigint [ not null, unique ]
+  subtotal decimal(10,2) [ not null ]
+  tip decimal(10,2) [ not null, default: 0 ]
+  total decimal(10,2) [ not null ] 
+  payment_method payment_method [ not null ]
   issued_at timestamp [ not null, default: `now()` ]
-
 }
 
-Table receipts_menu_items {
-  menu_item_id bigint [ not null ]
-  receipt_id bigint [ not null ]
-  quantity integer [ not null, default: 1 ]
-  price money [ not null ]
-}
-
-Ref: receipts_menu_items.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
-Ref: receipts_menu_items.receipt_id > receipts.id [ delete: cascade, update: no action ]
+Ref: receipts.order_id > orders.id [delete: restrict, update: no action]
 
 Table menu_item_reviews {
-  id bigint [ primary key, unique, increment ]
-  rating integer [ not null, check: `rating >= 1 && rating <= 10` ]
+  id bigint [ pk, increment ]
+  rating integer [ not null, check: `rating >= 1 AND rating <= 10` ]
   text text
 
   menu_item_id bigint [ not null ]
@@ -111,8 +129,8 @@ Table menu_item_reviews {
 Ref: menu_item_reviews.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
 
 Table user_ratings {
-  id bigint [ primary key, unique, increment ]
-  rating integer [ not null, check: `rating >= 1 && rating <= 10` ]
+  id bigint [ pk, increment ]
+  rating integer [ not null, check: `rating >= 1 AND rating <= 10` ]
   text text
 
   user_id bigint [ not null ]
@@ -171,3 +189,4 @@ Table menus_menu_items {
 
 Ref: menus_menu_items.menu_id > menus.id [ delete: cascade, update: no action ]
 Ref: menus_menu_items.menu_item_id > menu_items.id [delete: cascade, update: no action  ]
+ 
