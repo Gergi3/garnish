@@ -111,3 +111,55 @@ Table user_ratings {
 }
 
 Ref: user_ratings.user_id > users.id [ delete: cascade, update: no action ] 
+
+Table ingredients {
+  id bigint [ pk, increment ]
+  name varchar(80) [ not null ]
+  unit varchar(10) [ not null ]
+  current_stock decimal(10,3) [ not null, default: 0 ]
+  min_stock decimal(10,3) [ not null, default: 0 ]
+}
+
+Table recipes {
+  menu_item_id bigint [ not null ]
+  ingredient_id bigint [ not null ]
+  quantity decimal(10,3) [ not null ]
+
+  indexes {
+    (menu_item_id, ingredient_id ) [ pk ]
+  }
+}
+
+Ref: recipes.menu_item_id > menu_items.id [ delete: cascade ]
+Ref: recipes.ingredient_id > ingredients.id [  delete: restrict ]
+
+Table chat_messages {
+  id bigint [ pk, increment ]
+  channel chat_channel [ not null ]
+  content varchar(1000) [ not null ]
+  sent_at timestamp [ not null, default: `now()` ]
+  sender_id bigint [ not null ]
+  recipient_id bigint [ check: `(channel = 'direct' AND recipient_id IS NOT NULL) OR (channel != 'direct' AND recipient_id IS NULL)` ]
+}
+
+Ref: chat_messages.sender_id > users.id [ delete: cascade, update: no action]
+Ref: chat_messages.recipient_id > users.id [ delete: cascade, update: no action ] 
+
+Table menus {
+  id bigint [ pk, increment ]
+  name varchar(50) [ not null ]
+  description varchar(200)
+  is_active boolean [ not null, default: false ]
+}
+
+Table menus_menu_items {
+  menu_id bigint [ not null ]
+  menu_item_id bigint [ not null ]
+
+  indexes {
+    (menu_id, menu_item_id) [ pk ]
+  }
+}
+
+Ref: menus_menu_items.menu_id > menus.id [ delete: cascade, update: no action ]
+Ref: menus_menu_items.menu_item_id > menu_items.id [delete: cascade, update: no action  ]
