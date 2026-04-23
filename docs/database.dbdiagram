@@ -1,0 +1,192 @@
+Project garnish {
+  database_type: 'PostgreSQL'
+}
+
+Table settings {
+  id bigint [ pk, increment ]
+  restaurant_name varchar(100) [ not null ]
+  currency varchar(3) [ not null, default: 'BGN' ]
+  opening_time time
+  closing_time time
+}
+
+enum role {
+  admin
+  manager
+  cook
+  bartender
+  waiter
+} 
+
+enum order_item_status {
+  pending
+  preparing
+  ready
+  served
+  cancelled
+}
+
+enum chat_channel {
+  general 
+  kitchen 
+  bar
+  direct
+}
+
+enum payment_method {
+  cash
+  card
+}
+
+Table users {
+  id bigint [ pk, increment ]
+  username varchar(30) [ not null, unique ]
+  password_hash varchar(60) [ not null ]
+  first_name varchar(30)
+  last_name varchar(30) 
+  role role [ not null ]
+}
+
+Table tables { 
+  id bigint [ pk, increment ]
+  name varchar(10) [ not null, unique ]
+  capacity integer [ not null ]
+}
+
+Table orders {
+  id bigint [ pk, increment ] 
+  opened_at timestamp [ not null,  default: `now()` ]
+  closed_at timestamp
+
+  table_id bigint [ not null ]
+  waiter_id bigint [ not null ]
+} 
+
+Ref: orders.table_id > tables.id [ delete: cascade, update: no action ]
+Ref: orders.waiter_id > users.id [ delete: restrict, update: no action ]
+
+Table menu_items {
+  id bigint [ pk, increment ]
+  name varchar(150) [ not null ]
+  description varchar(150)
+  price decimal(10,2) [ not null ]
+  available boolean [ not null, default: true ]
+}
+
+Table order_items {
+  id bigint [ pk, increment ]
+  order_id bigint [ not null ]
+  menu_item_id bigint [ not null ]
+  quantity integer [ not null, default: 1 ]
+  note varchar(200)
+  status order_item_status [ not null, default: 'pending' ]
+  ordered_price  decimal(10,2) [ not null ]
+  sent_at timestamp
+  ready_at timestamp
+  delivered_at timestamp
+}
+
+Ref: order_items.order_id > orders.id [ delete: cascade, update: no action ]
+Ref: order_items.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+
+Table categories {
+  id bigint [ pk, increment ]
+  name varchar(50) [ not null ]
+ }
+
+Table menu_items_categories {
+  menu_item_id bigint [ not null ]
+  category_id bigint [ not null ]
+
+  indexes {
+    (menu_item_id, category_id) [ pk ]
+  }
+} 
+
+Ref: menu_items_categories.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+Ref: menu_items_categories.category_id > categories.id [ delete: cascade, update: no action ]
+ 
+Table receipts {
+  id bigint [ pk, increment ]
+  order_id bigint [ not null, unique ]
+  subtotal decimal(10,2) [ not null ]
+  tip decimal(10,2) [ not null, default: 0 ]
+  total decimal(10,2) [ not null ] 
+  payment_method payment_method [ not null ]
+  issued_at timestamp [ not null, default: `now()` ]
+}
+
+Ref: receipts.order_id > orders.id [delete: restrict, update: no action]
+
+Table menu_item_reviews {
+  id bigint [ pk, increment ]
+  rating integer [ not null, check: `rating >= 1 AND rating <= 10` ]
+  text text
+
+  menu_item_id bigint [ not null ]
+}
+
+Ref: menu_item_reviews.menu_item_id > menu_items.id [ delete: cascade, update: no action ]
+
+Table user_ratings {
+  id bigint [ pk, increment ]
+  rating integer [ not null, check: `rating >= 1 AND rating <= 10` ]
+  text text
+
+  user_id bigint [ not null ]
+}
+
+Ref: user_ratings.user_id > users.id [ delete: cascade, update: no action ] 
+
+Table ingredients {
+  id bigint [ pk, increment ]
+  name varchar(80) [ not null ]
+  unit varchar(10) [ not null ]
+  current_stock decimal(10,3) [ not null, default: 0 ]
+  min_stock decimal(10,3) [ not null, default: 0 ]
+}
+
+Table recipes {
+  menu_item_id bigint [ not null ]
+  ingredient_id bigint [ not null ]
+  quantity decimal(10,3) [ not null ]
+
+  indexes {
+    (menu_item_id, ingredient_id ) [ pk ]
+  }
+}
+
+Ref: recipes.menu_item_id > menu_items.id [ delete: cascade ]
+Ref: recipes.ingredient_id > ingredients.id [  delete: restrict ]
+
+Table chat_messages {
+  id bigint [ pk, increment ]
+  channel chat_channel [ not null ]
+  content varchar(1000) [ not null ]
+  sent_at timestamp [ not null, default: `now()` ]
+  sender_id bigint [ not null ]
+  recipient_id bigint [ check: `(channel = 'direct' AND recipient_id IS NOT NULL) OR (channel != 'direct' AND recipient_id IS NULL)` ]
+}
+
+Ref: chat_messages.sender_id > users.id [ delete: cascade, update: no action]
+Ref: chat_messages.recipient_id > users.id [ delete: cascade, update: no action ] 
+
+Table menus {
+  id bigint [ pk, increment ]
+  name varchar(50) [ not null ]
+  description varchar(200)
+  is_active boolean [ not null, default: false ]
+}
+
+Table menus_menu_items {
+  menu_id bigint [ not null ]
+  menu_item_id bigint [ not null ]
+
+  indexes {
+    (menu_id, menu_item_id) [ pk ]
+  }
+}
+
+Ref: menus_menu_items.menu_id > menus.id [ delete: cascade, update: no action ]
+Ref: menus_menu_items.menu_item_id > menu_items.id [delete: cascade, update: no action  ]
+ 
