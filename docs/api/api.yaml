@@ -1,0 +1,2588 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Garnish API
+meta:
+  id: wrk_24c813fe8cfc4807b6e4613c354f6423
+  created: 1776810137069
+  modified: 1776871521241
+  description: Shared API collection for the Garnish kitchen & staff management
+    app. Covers auth, admin, menu, inventory, tables, orders and reports.
+collection:
+  - name: Resource Template
+    meta:
+      id: fld_5706f634067e43238c8fafe733cc3f94
+      created: 1776810137072
+      modified: 1776810176155
+      sortKey: -900
+      description: "Template folder. Duplicate this for each REST resource: /users,
+        /menu-items, /orders, etc."
+    children:
+      - url: "{{ _.api }}/resources/1"
+        name: Patch
+        meta:
+          id: req_5b5c202a89eb43ada2facbf5ee23f973
+          created: 1776810137074
+          modified: 1777318219944
+          isPrivate: false
+          description: ""
+          sortKey: -600
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources/1"
+        name: Update
+        meta:
+          id: req_6fe165be8d7942cba7dfb3ee49f91e6e
+          created: 1776810137074
+          modified: 1777318257141
+          isPrivate: false
+          description: ""
+          sortKey: -700
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources/1"
+        name: Delete
+        meta:
+          id: req_8f4ca3da265a4973b67be0665fd2119a
+          created: 1776810137075
+          modified: 1777318225669
+          isPrivate: false
+          description: ""
+          sortKey: -500
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources"
+        name: Create
+        meta:
+          id: req_e5f348aff8554cb89d50d0d895437486
+          created: 1777318044515
+          modified: 1777318212432
+          isPrivate: false
+          description: ""
+          sortKey: -750
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/resources"
+        name: List
+        meta:
+          id: req_ba6707419dee46a6a7df1d07b7d879bb
+          created: 1777319015721
+          modified: 1777319015721
+          isPrivate: false
+          description: ""
+          sortKey: -925
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/menus/:id"
+        name: Get by id
+        meta:
+          id: req_46a01edad03243f7a8a54bbc1bed2cf9
+          created: 1777319087953
+          modified: 1777319097096
+          isPrivate: false
+          description: ""
+          sortKey: -825
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+  - name: Auth
+    meta:
+      id: fld_b1880fd679b0414bae31f8025da61085
+      created: 1777238148759
+      modified: 1777238148759
+      sortKey: -1777238148759
+      description: ""
+    children:
+      - url: "{{ _.api }}/login"
+        name: Login
+        meta:
+          id: req_4da6194f3f0245a1bcba7e587f964903
+          created: 1777238153312
+          modified: 1777238799612
+          isPrivate: false
+          description: ""
+          sortKey: -1777238153312
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "kaloyan13tanev",
+            	"password": "123456789"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/register"
+        name: Register
+        meta:
+          id: req_4ab8c2b952aa4e838e679b9776a077d0
+          created: 1777238815856
+          modified: 1777238891201
+          isPrivate: false
+          description: ""
+          sortKey: -1777238815856
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "kaloyan12petrov",
+            	"password": "123456789",
+            	"first_name": "Kaloyan",
+            	"last_name": "Petrov"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/logout"
+        name: Logout
+        meta:
+          id: req_f3d3ffa702464e42a6256b9c6581e394
+          created: 1777317276376
+          modified: 1777317398056
+          isPrivate: false
+          description: ""
+          sortKey: -1777317276376
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Users
+    meta:
+      id: fld_f4922a40236a49d9992fcbe2626cd4c5
+      created: 1777317450847
+      modified: 1777317450847
+      sortKey: -1777317450847
+      description: ""
+    children:
+      - url: "{{ _.api }}/users/:id"
+        name: Patch
+        meta:
+          id: req_00413322009e44eba107e63ea5af80e8
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777317021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"role": "manager"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/users/:id"
+        name: Get by id
+        meta:
+          id: req_208c0cc62b8f4371ab1e854a4d5c0d21
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777317021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/users"
+        name: List
+        meta:
+          id: req_2a63ed292f5745c6a14176fcbc0d6928
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777317021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/users/:id"
+        name: Delete
+        meta:
+          id: req_9c46a4b754494105913219773ff231fc
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777317021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/users/:id"
+        name: Update
+        meta:
+          id: req_b85a4c0252e343588e1067dcf3a3ed9c
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777317021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"firstName": "Kaloyan",
+            	"lastName": "Petrov",
+            	"role": "waiter"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - name: Ratings
+        meta:
+          id: fld_fd353d0a900e433fb7ac524ea8ea1598
+          created: 1777317419448
+          modified: 1777317470435
+          sortKey: -1777317453222
+          description: ""
+        children:
+          - url: "{{ _.api }}/users/ratings"
+            name: Create
+            meta:
+              id: req_ceb3a0202ec94f028ace419f871c10d3
+              created: 1776810137074
+              modified: 1777318179124
+              isPrivate: false
+              description: ""
+              sortKey: -1777317374801
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"rating": 10,
+                	"text": "Lorem Ipsum"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.api }}/users/ratings"
+            name: List
+            meta:
+              id: req_182324dfb2104a6e9f33cc3c98a1b5f7
+              created: 1777317473426
+              modified: 1777317996288
+              isPrivate: false
+              description: ""
+              sortKey: -1777317473426
+            method: GET
+            parameters:
+              - name: sortBy
+                value: rating
+                description: ""
+                disabled: false
+            headers:
+              - name: User-Agent
+                value: insomnia/12.5.0
+                description: ""
+                disabled: false
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.api }}/users/:id/ratings"
+            name: Get by username
+            meta:
+              id: req_52df3d7251db4b53b7478c8d5a912afe
+              created: 1777317537388
+              modified: 1777317671569
+              isPrivate: false
+              description: ""
+              sortKey: -1777317374901
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/12.5.0
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/users/ratings/:id"
+            name: Delete
+            meta:
+              id: req_8b1b042b15f94b9598186e3c9fdac286
+              created: 1777318263684
+              modified: 1777318307168
+              isPrivate: false
+              description: ""
+              sortKey: -1777317374701
+            method: DELETE
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/users/ratings/:id"
+            name: Update
+            meta:
+              id: req_a0ff315ed8a9476ca1b68f20a6c79132
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777317021600
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"rating": 8,
+                	"text": "Updated review"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/users/ratings/:id"
+            name: Patch
+            meta:
+              id: req_cb25c4ea5db64d8eaacfb76e0019c7d2
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777317021575
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"text": "Changed my mind"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+  - name: Messages
+    meta:
+      id: fld_77fdad6bf36646dea2b296c8dd3dc95c
+      created: 1777318387666
+      modified: 1777318619613
+      sortKey: -1777318387666
+      description: ""
+    children:
+      - url: "{{ _.api }}/messages/:channel"
+        name: List by channel
+        meta:
+          id: req_d6b96d00b85e49d5b682439281cdd8ad
+          created: 1777318469872
+          modified: 1777318632916
+          isPrivate: false
+          description: ""
+          sortKey: -1777318473581
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: channel
+            value: ""
+      - url: "{{ _.api }}/messages"
+        name: Create
+        meta:
+          id: req_072f459a8f9345aab1e6607369e0cf6f
+          created: 1777318596515
+          modified: 1777318824058
+          isPrivate: false
+          description: ""
+          sortKey: -1777318473681
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+
+            	"channel": "kitchen",
+
+            	"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet felis eget lorem malesuada, quis gravida neque gravida. Quisque ac leo ut nisl ultricies hendrerit quis quis urna. Pellentesque sed nisi sit amet risus auctor posuere. Sed volutpat nibh vel faucibus semper. Curabitur ultricies ligula at nunc finibus vehicula. Nunc sapien lectus, dictum imperdiet enim ut, pretium aliquam eros. Maecenas ultrices fringilla massa, et vestibulum enim. Quisque dignissim vestibulum eleifend.",
+
+            	"senderId": 1,
+
+            	"recipientId": 2
+
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/messages/direct/:recipientId"
+        name: Get Direct Messages
+        meta:
+          id: req_1691a7f16ef942acb813c66b1742cef7
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777318021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: recipientId
+            value: ""
+      - url: "{{ _.api }}/messages/:id"
+        name: Delete
+        meta:
+          id: req_bb284cc165fd4630a7e56abe2e35623f
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777318021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+  - name: Menus
+    meta:
+      id: fld_fec9a46c478a463986476e42f6478818
+      created: 1777318946570
+      modified: 1777319032607
+      sortKey: -1777318946570
+      description: ""
+    children:
+      - url: "{{ _.api }}/menus"
+        name: List
+        meta:
+          id: req_8a1fa9fdefcc4d60a0cd36e8505c5e0d
+          created: 1776810137073
+          modified: 1777319043582
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/menus/:id"
+        name: Get by id
+        meta:
+          id: req_a7a16c81443a42058bbdfcd90fe600d2
+          created: 1776810137073
+          modified: 1777319397213
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/menus"
+        name: Create
+        meta:
+          id: req_925f6d05b0d44c73a23a5ca8eab233df
+          created: 1777319120444
+          modified: 1777319216774
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "obedno menu",
+            	"description": "this is obedno menu",
+            	"isActive": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/menus/:id"
+        name: Update
+        meta:
+          id: req_d11e33bff47c4222bf1b0a24f5ccab97
+          created: 1777319122692
+          modified: 1777319255749
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "obedno menu",
+            	"description": "this is obedno menu",
+            	"isActive": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/menus/:id"
+        name: Delete
+        meta:
+          id: req_9724a69cc212471f8077d3d7ad97b559
+          created: 1777319136651
+          modified: 1777319301146
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/menus/:id"
+        name: Patch
+        meta:
+          id: req_b2b392aaac4e49ad8f07f2a678535ee4
+          created: 1777319264372
+          modified: 1777319294488
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"description": "this is obedno menu"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - name: Menu Items
+        meta:
+          id: fld_bb00e36ce1e343e7b3f0da63b9021e06
+          created: 1777319772806
+          modified: 1777319901868
+          sortKey: -1777319022056
+          description: ""
+        children:
+          - url: "{{ _.api }}/menus/:menuId/items/:id"
+            name: Delete
+            meta:
+              id: req_0afccc247ef040d1b97b6a908018051a
+              created: 1777319772806
+              modified: 1777319953028
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021756
+            method: DELETE
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: menuId
+                value: ""
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/:menuId/items/:id"
+            name: Patch
+            meta:
+              id: req_13a018734bb642e79a10787b4bb2114d
+              created: 1777319772806
+              modified: 1777320012108
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021781
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"price": 10.99,
+                	"available": true
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: menuId
+                value: ""
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/:menuId/items"
+            name: Create
+            meta:
+              id: req_86595a2d4b854846b6159f69e68916e5
+              created: 1777319772806
+              modified: 1777320000320
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021831
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Chicken Teriyaki",
+                	"description": "Tasty chicken with teriyaki sauce all over",
+                	"price": 10.99,
+                	"available": false
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: menuId
+                value: ""
+          - url: "{{ _.api }}/menus/:menuId/items/:id"
+            name: Update
+            meta:
+              id: req_9ec5a6316e61413a9f3ea80a5a143509
+              created: 1777319772806
+              modified: 1777320002917
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021806
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Chicken Teriyaki",
+                	"description": "Tasty chicken with teriyaki sauce all over",
+                	"price": 10.99,
+                	"available": false
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: menuId
+                value: ""
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/:menuId/items/:id"
+            name: Get by id from menu
+            meta:
+              id: req_bfbe96ba34324c5ebbcff532f55dcd21
+              created: 1777319772806
+              modified: 1777320061528
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021956
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: menuId
+                value: ""
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/:menuId/items"
+            name: List by menu
+            meta:
+              id: req_c7e24e8ea19848cba420d69cbe19b3d2
+              created: 1777319772806
+              modified: 1777320088024
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021856
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: menuId
+                value: ""
+          - url: "{{ _.api }}/menus/items/:id"
+            name: Get by id
+            meta:
+              id: req_2f604fda5d924cab84c5ea5456ccfcd1
+              created: 1777320066468
+              modified: 1777320078693
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021906
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/items"
+            name: List all
+            meta:
+              id: req_81f0cf3c3e114dd4974720fc767102b6
+              created: 1777320093441
+              modified: 1777320098006
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021843.5
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Menu Item Reviews
+        meta:
+          id: fld_81ecd7b7f3484184acfa967b7a95d81c
+          created: 1777320037346
+          modified: 1777320048585
+          sortKey: -1777319022006
+          description: ""
+        children:
+          - url: "{{ _.api }}/menus/items/reviews"
+            name: List
+            meta:
+              id: req_4c217760680d4918b1df5bc556eb462b
+              created: 1777320037346
+              modified: 1777320232502
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021856
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.api }}/menus/items/:id/reviews"
+            name: Patch
+            meta:
+              id: req_59062aa817024a57a8670785a33547d3
+              created: 1777320037346
+              modified: 1777320437177
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021781
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"rating": 2,
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/items/:id/reviews"
+            name: Create
+            meta:
+              id: req_60076900d4ac4289b421aa7e95440697
+              created: 1777320037346
+              modified: 1777320335653
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021831
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"rating": 5,
+                	"text": "Very good my friend!",
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/items/:id/reviews"
+            name: Update
+            meta:
+              id: req_69666a14a9724759848e8b2a5a2e0491
+              created: 1777320037346
+              modified: 1777320450501
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021806
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"rating": 10,
+                	"text": "Excellent dish!",
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/items/reviews/:id"
+            name: Delete
+            meta:
+              id: req_9cb2d7ef165e4988a641e67a421f9996
+              created: 1777320037346
+              modified: 1777320422357
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021756
+            method: DELETE
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/items/:id/reviews"
+            name: List by item id
+            meta:
+              id: req_db472f09b925427ca6b3c43ebe4ba54d
+              created: 1777320037346
+              modified: 1777320370497
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021956
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/menus/items/reviews/:id"
+            name: Get by id
+            meta:
+              id: req_4159a8dc88fa400aa633043b40adc8bf
+              created: 1777320378274
+              modified: 1777320384341
+              isPrivate: false
+              description: ""
+              sortKey: -1777319021931
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: ""
+  - name: Ingredients
+    meta:
+      id: fld_9c6f3b0891bd44ba9ddb9cf14fe6aaf1
+      created: 1777319367224
+      modified: 1777320505596
+      sortKey: -1777318667118
+      description: ""
+    children:
+      - url: "{{ _.api }}/ingredients/:id"
+        name: Get by id
+        meta:
+          id: req_01280b8f50d44088a69f3dcb3b231cc1
+          created: 1777319367224
+          modified: 1777319405211
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/ingredients/:id"
+        name: Delete
+        meta:
+          id: req_5fd6f6a4376b415ab5ec964685f08a3c
+          created: 1777319367224
+          modified: 1777319428709
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/ingredients/:id"
+        name: Patch
+        meta:
+          id: req_710a2b9dc3e44c9585cd74698e1eefbc
+          created: 1777319367224
+          modified: 1777319559867
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"unit": "kg",
+            	"currentStock": 5
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/ingredients"
+        name: Create
+        meta:
+          id: req_72237f78e9ea433a8b4ca50292d606fa
+          created: 1777319367224
+          modified: 1777319419395
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "obedno menu",
+            	"description": "this is obedno menu",
+            	"isActive": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/ingredients/:id"
+        name: Update
+        meta:
+          id: req_86cbc449d39e486c94e47822e66b5953
+          created: 1777319367224
+          modified: 1777319705064
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "obedno menu",
+            	"description": "this is obedno menu",
+            	"isActive": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/ingredients"
+        name: List
+        meta:
+          id: req_ce5008dc290f4a558eb630f4f7e0d7bd
+          created: 1777319367224
+          modified: 1777319411215
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Categories
+    meta:
+      id: fld_8709718439354ec3b859d54ca7076f13
+      created: 1777319582382
+      modified: 1777319585499
+      sortKey: -1777318527392
+      description: ""
+    children:
+      - url: "{{ _.api }}/categories/:id"
+        name: Update
+        meta:
+          id: req_0061a23498ab4552873f24a227588c08
+          created: 1777319582382
+          modified: 1777319680650
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "kitchen"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/categories/:id"
+        name: Patch
+        meta:
+          id: req_08fa9f9453d44e82849936df4b3cb7ce
+          created: 1777319582382
+          modified: 1777319683999
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "kitchen"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/categories/:id"
+        name: Delete
+        meta:
+          id: req_589982b20cba4216a2059423fd4a4ec9
+          created: 1777319582382
+          modified: 1777319632690
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/categories/:id"
+        name: Get by id
+        meta:
+          id: req_7692bac416b641a481872a053794c467
+          created: 1777319582382
+          modified: 1777319612778
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/categories"
+        name: List
+        meta:
+          id: req_8e17825d1d2c4dd99d0ad3605957616e
+          created: 1777319582382
+          modified: 1777319618239
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/categories"
+        name: Create
+        meta:
+          id: req_bfc791deea1d4c049750c41b5c645033
+          created: 1777319582382
+          modified: 1777319654321
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "kitchen"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Recipes
+    meta:
+      id: fld_0a65dc34741c4d3e9be62e1628596a6d
+      created: 1777320525676
+      modified: 1777320525676
+      sortKey: -1777318597255
+      description: ""
+    children:
+      - url: "{{ _.api }}/recipes/:menuItemId"
+        name: Create
+        meta:
+          id: req_52c4546720b645d6a2dc6518439d0453
+          created: 1777320525676
+          modified: 1777320846060
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"ingredientId": 1,
+            	"quantity": 100
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: menuItemId
+            value: ""
+      - url: "{{ _.api }}/recipes"
+        name: List
+        meta:
+          id: req_7839036ee3b442e4a607517d261e58ea
+          created: 1777320525676
+          modified: 1777320570669
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/recipes/:menuItemId"
+        name: Update
+        meta:
+          id: req_7951f9e558f04e6eabb2f034d0ca49cc
+          created: 1777320525676
+          modified: 1777320847808
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"ingredientId": 1,
+            	"quantity": 50
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: menuItemId
+            value: ""
+      - url: "{{ _.api }}/recipes/:menuItemId"
+        name: Get by menu item id
+        meta:
+          id: req_b6a0090e5fd4420eb46bac80ccdd611e
+          created: 1777320525676
+          modified: 1777320854297
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: menuItemId
+            value: ""
+      - url: "{{ _.api }}/recipes/:menuItemId"
+        name: Delete
+        meta:
+          id: req_c3943eb60cd54b43823f6b916718fce5
+          created: 1777320525676
+          modified: 1777320849718
+          isPrivate: false
+          description: ""
+          sortKey: -1777319021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: menuItemId
+            value: ""
+  - name: Settings
+    meta:
+      id: fld_0c5c9ee5a12c4098ad4754c1d8900d55
+      created: 1777321000000
+      modified: 1777321000000
+      sortKey: -1777321000000
+      description: ""
+    children:
+      - url: "{{ _.api }}/settings"
+        name: Update
+        meta:
+          id: req_30d261395bb947c6b44b804f1e2245b7
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777321021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"restaurantName": "Garnish",
+            	"currency": "BGN",
+            	"openingTime": "08:00",
+            	"closingTime": "23:00"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/settings"
+        name: Patch
+        meta:
+          id: req_6197129faca24d62ac57b1c70a0616c5
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777321021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"currency": "EUR"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/settings"
+        name: Get
+        meta:
+          id: req_b3131d833b6744a4a37be348ea05b0c0
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777321021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Orders
+    meta:
+      id: fld_26dfcaca6b134ad0b4a27a7bc76a1cdc
+      created: 1777321000000
+      modified: 1777321000000
+      sortKey: -1777323000000
+      description: ""
+    children:
+      - url: "{{ _.api }}/orders/:id"
+        name: Get by id
+        meta:
+          id: req_48246c84002648ea9e1422eca8f8ac12
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777323021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/orders/:id"
+        name: Close / Update
+        meta:
+          id: req_7b75e2ea22354fd9bad2b58a42e6c9d8
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777323021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"closedAt": "2026-04-27T22:00:00Z"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/orders"
+        name: Create
+        meta:
+          id: req_9b470ca8ef414c4f86ca13c8dc14f458
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777323021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"tableId": 1,
+            	"waiterId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/orders/:id"
+        name: Delete
+        meta:
+          id: req_d0cea34f466e475eb5c1858b7f2d1129
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777323021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/orders"
+        name: List
+        meta:
+          id: req_f4be8ed8061f4fc5a94155503b925044
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777323021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Order Items
+        meta:
+          id: fld_8bdb719f7e184641a00279c4bedb2847
+          created: 1777321000000
+          modified: 1777321000000
+          sortKey: -1777323022056
+          description: ""
+        children:
+          - url: "{{ _.api }}/orders/:orderId/items/:id"
+            name: Get by id
+            meta:
+              id: req_0f772e26842745fb8086ad02c4ef7469
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777323021956
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: orderId
+                value: ""
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/orders/:orderId/items"
+            name: List by Order
+            meta:
+              id: req_3dd14823ab6e4408bfdaf0fabcb5e7e0
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777323021856
+            method: GET
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: orderId
+                value: ""
+          - url: "{{ _.api }}/orders/:orderId/items/:id"
+            name: Remove Item
+            meta:
+              id: req_4d549a26920b47ecacfa8a5f016ce7c3
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777323021756
+            method: DELETE
+            headers:
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: orderId
+                value: ""
+              - name: id
+                value: ""
+          - url: "{{ _.api }}/orders/:orderId/items"
+            name: Add Item
+            meta:
+              id: req_74e919f0067e474b9c32ea69ad0fe5a7
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777323021831
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"menuItemId": 1,
+                	"quantity": 2,
+                	"note": "no onions"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: orderId
+                value: ""
+          - url: "{{ _.api }}/orders/:orderId/items/:id"
+            name: Update Status
+            meta:
+              id: req_9123b2d8476e4ab5825dddbeb6c16089
+              created: 1777321000000
+              modified: 1777321000000
+              isPrivate: false
+              description: ""
+              sortKey: -1777323021781
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"status": "preparing"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: X-Auth
+                value: "{{ _.access_token }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: orderId
+                value: ""
+              - name: id
+                value: ""
+  - name: Tables
+    meta:
+      id: fld_7a51cff322d74b53a42dd69d441c7e33
+      created: 1777321000000
+      modified: 1777321000000
+      sortKey: -1777322000000
+      description: ""
+    children:
+      - url: "{{ _.api }}/tables"
+        name: List
+        meta:
+          id: req_24bf75635cd7498d9a21dbdd5598e975
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777322021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/tables/:id"
+        name: Patch
+        meta:
+          id: req_34f5eb9311fe48bf9f9faca5d50ba61b
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777322021781
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"capacity": 6
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/tables"
+        name: Create
+        meta:
+          id: req_4169980fc547466a93824f297a53d326
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777322021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "T1",
+            	"capacity": 4
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/tables/:id"
+        name: Update
+        meta:
+          id: req_77ad19c9177e4d4eb3fc2cd95f457bfc
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777322021806
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "T1",
+            	"capacity": 6
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/tables/:id"
+        name: Get by id
+        meta:
+          id: req_b1772ee0a7654cc594a13298c1adaf42
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777322021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+      - url: "{{ _.api }}/tables/:id"
+        name: Delete
+        meta:
+          id: req_b201bc2c308b4fa881a71a417c262f55
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777322021756
+        method: DELETE
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+  - name: Receipts
+    meta:
+      id: fld_e97ac93b87a3441fac0be8fe466eb485
+      created: 1777321000000
+      modified: 1777321000000
+      sortKey: -1777324000000
+      description: ""
+    children:
+      - url: "{{ _.api }}/receipts"
+        name: List
+        meta:
+          id: req_36971d9ade3f4aa397af4d3cbc5f6dc7
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777324021856
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.api }}/orders/:orderId/receipt"
+        name: Get by Order id
+        meta:
+          id: req_521b9867b3b746f78e539095300b7339
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777324021956
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: orderId
+            value: ""
+      - url: "{{ _.api }}/orders/:orderId/receipt"
+        name: Create for Order
+        meta:
+          id: req_6785e4d5212249569fff46b894ac15ce
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777324021831
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"subtotal": 42.50,
+            	"tip": 5.00,
+            	"total": 47.50,
+            	"paymentMethod": "card"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: orderId
+            value: ""
+      - url: "{{ _.api }}/receipts/:id"
+        name: Get by id
+        meta:
+          id: req_8029a54bf75c46b8a84b358b2d181d87
+          created: 1777321000000
+          modified: 1777321000000
+          isPrivate: false
+          description: ""
+          sortKey: -1777324021906
+        method: GET
+        headers:
+          - name: X-Auth
+            value: "{{ _.access_token }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: id
+            value: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_f77c8a14f23c6185fdb6d52f345edcbb8c0389fe
+    created: 1776810137178
+    modified: 1776810137178
+environments:
+  name: Base Environment
+  meta:
+    id: env_cebe4c5c6a244bbc858bb23feb47edbb
+    created: 1776810137070
+    modified: 1777236662095
+    isPrivate: false
+  data:
+    base_url: http://localhost:8080
+    api: "{{ _.base_url }}/api/v1"
+    access_token: ""
+  subEnvironments:
+    - name: Development
+      meta:
+        id: env_78750546ee574719a340175d7f611943
+        created: 1776810137070
+        modified: 1776810373852
+        isPrivate: false
+        sortKey: 2
+      data:
+        base_url: http://localhost:8080
+      color: "#168b05"
+    - name: Development
+      meta:
+        id: env_e68860143e404dfc998b1a92c353845a
+        created: 1776810137070
+        modified: 1776810373852
+        isPrivate: false
+        sortKey: 2
+      data:
+        base_url: http://localhost:8080
+      color: "#168b05"
+    - name: Development
+      meta:
+        id: env_ea456c100c564d9d88dcc1c115dad5d5
+        created: 1776810137070
+        modified: 1776810373852
+        isPrivate: false
+        sortKey: 2
+      data:
+        base_url: http://localhost:8080
+      color: "#168b05"
+    - name: Staging
+      meta:
+        id: env_5bfe7f1d9fb942e48c21574cce57d19a
+        created: 1776810137071
+        modified: 1776810483103
+        isPrivate: false
+        sortKey: 3
+      data:
+        base_url: https://staging.example.com
+      color: "#f59e0b"
+    - name: Staging
+      meta:
+        id: env_72f267c94e754f27bdd1340d59878ed9
+        created: 1776810137071
+        modified: 1776810483103
+        isPrivate: false
+        sortKey: 3
+      data:
+        base_url: https://staging.example.com
+      color: "#f59e0b"
+    - name: Staging
+      meta:
+        id: env_bfc7c7728b944c6a82649477603da104
+        created: 1776810137071
+        modified: 1776810483103
+        isPrivate: false
+        sortKey: 3
+      data:
+        base_url: https://staging.example.com
+      color: "#f59e0b"
+    - name: Production
+      meta:
+        id: env_3151c2a5cd3b43c79b323770f94f67db
+        created: 1776810284279
+        modified: 1776810509965
+        isPrivate: false
+        sortKey: 1776810284279
+      data:
+        base_url: https://production.example.com
+      color: "#ef4444"
+    - name: Production
+      meta:
+        id: env_60ebb7c84f3a417aa7b205fe2966ea97
+        created: 1776810284279
+        modified: 1776810509965
+        isPrivate: false
+        sortKey: 1776810284279
+      data:
+        base_url: https://production.example.com
+      color: "#ef4444"
+    - name: Production
+      meta:
+        id: env_e3afe69cafcd403283047bca84e4e6aa
+        created: 1776810284279
+        modified: 1776810509965
+        isPrivate: false
+        sortKey: 1776810284279
+      data:
+        base_url: https://production.example.com
+      color: "#ef4444"
